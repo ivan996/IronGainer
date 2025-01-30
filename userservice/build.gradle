@@ -1,0 +1,55 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.2'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'com.palantir.docker' version '0.35.0'
+}
+
+group = 'com.irongainer'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// Spring Web
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// Spring Data JPA
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// OAuth2 Resource Server
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+
+	// PostgreSQL Driver
+	runtimeOnly 'org.postgresql:postgresql'
+
+	// Validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// Docker Compose Support (Spring Boot 3.1+)
+	developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// Flyway Migration
+	implementation 'org.flywaydb:flyway-core'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
