@@ -47,7 +47,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	// Flyway Migration
-	implementation 'org.flywaydb:flyway-core'
+	//implementation 'org.flywaydb:flyway-core'
+	implementation "org.flywaydb:flyway-database-postgresql"
 }
 
 tasks.named('test') {
