@@ -1,0 +1,17 @@
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db_iron
+    environment:
+      POSTGRES_USER: gaineriron
+      POSTGRES_PASSWORD: IronGainer
+      POSTGRES_DB: gainer
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:

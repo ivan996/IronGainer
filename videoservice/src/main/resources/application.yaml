@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: user-service
+  jpa:
+    open-in-view: false
+
+aws:
+  s3:
+    bucketName: irongainer
+    accessKey: AKIA3LET6GMXIWYHSUZZ
+    secretKey: 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
