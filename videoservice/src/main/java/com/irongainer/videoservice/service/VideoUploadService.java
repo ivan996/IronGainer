@@ -7,6 +7,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.irongainer.videoservice.config.AWSConfig;
+import com.irongainer.videoservice.dto.VideoUploadRequestDto;
 import com.irongainer.videoservice.dto.VideoUploadResponseDto;
 import com.irongainer.videoservice.exception.VideoServiceException;
 import jakarta.annotation.PostConstruct;
@@ -35,16 +36,16 @@ public class VideoUploadService {
                 .build();
     }
 
-    public VideoUploadResponseDto uploadFile(MultipartFile multipartFile,String name, String muscleGroup) {
+    public VideoUploadResponseDto uploadFile(VideoUploadRequestDto videoUploadRequestDto) {
 
         VideoUploadResponseDto videoUploadResponseDto = new VideoUploadResponseDto();
 
         try {
-            String filePath = muscleGroup + "/" + name;
+            String filePath = videoUploadRequestDto.getMuscleGroup() + "/" + videoUploadRequestDto.getMultipartFile().getName();
             ObjectMetadata objectMetadata = new ObjectMetadata();
-            objectMetadata.setContentType(multipartFile.getContentType());
-            objectMetadata.setContentLength(multipartFile.getSize());
-            s3Client.putObject(awsConfig.getBucketName(), filePath, multipartFile.getInputStream(), objectMetadata);
+            objectMetadata.setContentType(videoUploadRequestDto.getMultipartFile().getContentType());
+            objectMetadata.setContentLength(videoUploadRequestDto.getMultipartFile().getSize());
+            s3Client.putObject(awsConfig.getBucketName(), filePath, videoUploadRequestDto.getMultipartFile().getInputStream(), objectMetadata);
             videoUploadResponseDto.setFileParh(filePath);
         } catch (IOException e) {
             log.error("Error occurred ==> {}", e.getMessage());

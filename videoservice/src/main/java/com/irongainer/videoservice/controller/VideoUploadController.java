@@ -1,5 +1,6 @@
 package com.irongainer.videoservice.controller;
 
+import com.irongainer.videoservice.dto.VideoUploadRequestDto;
 import com.irongainer.videoservice.dto.VideoUploadResponseDto;
 import com.irongainer.videoservice.service.VideoUploadService;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +22,8 @@ public class VideoUploadController {
     private final VideoUploadService videoUploadService;
 
     @PostMapping("/upload")
-    public ResponseEntity<VideoUploadResponseDto> uploadFile (@RequestPart("file") MultipartFile multipartFile,
-                                                              @RequestPart("name") String name,
-                                                              @RequestPart("muscleGroup") String muscleGroup) {
+    public ResponseEntity<VideoUploadResponseDto> uploadFile (VideoUploadRequestDto videoUploadRequestDto) {
 
-        return new ResponseEntity<>(videoUploadService.uploadFile(multipartFile,name,muscleGroup), HttpStatus.OK);
+        return new ResponseEntity<>(videoUploadService.uploadFile(videoUploadRequestDto), HttpStatus.OK);
     }
 }
