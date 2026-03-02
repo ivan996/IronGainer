@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: user-service
+  jpa:
+    open-in-view: false
+  server:
+    port: 8082
+  video:
+    url: "http://localhost:8081"
+    endpoint: "/api/video/upload"

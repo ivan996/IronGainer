@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: user-service
+  jpa:
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: 15MB       # Maximum size for a single file
+      max-request-size: 15MB     # Maximum size for a multipart request (can include multiple files)
+
+aws:
+  s3:
+    bucketName: irongainer
+    accessKey: AKIA3LET6GMXIWYHSUZZ
+    secretKey: 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
